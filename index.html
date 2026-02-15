@@ -169,17 +169,6 @@
   }
 
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-</script>
-
-</body>
-
-  <audio id="musicaFondo" loop preload="auto">
-  <source src="musica.mp3" type="audio/mpeg">
-  <!-- Opcional: otro formato por si acaso -->
-  <!-- <source src="musica-fondo.ogg" type="audio/ogg"> -->
-  Tu navegador no soporta audio.
-</audio>
-
   let current = 'p1';
 let musicaIniciada = false;   // ← nuevo
 
@@ -203,5 +192,16 @@ function goTo(id) {
     }
   }
 }
+  
+</script>
+
+</body>
+
+  <audio id="musicaFondo" loop preload="auto">
+  <source src="musica.mp3" type="audio/mpeg">
+  <!-- Opcional: otro formato por si acaso -->
+  <!-- <source src="musica-fondo.ogg" type="audio/ogg"> -->
+  Tu navegador no soporta audio.
+</audio>
 
 </html>
