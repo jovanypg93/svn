@@ -173,38 +173,35 @@
 
 </body>
 
-<script>
-let current = 'p1';
+  <audio id="musicaFondo" loop preload="auto">
+  <source src="musica.mp3" type="audio/mpeg">
+  <!-- Opcional: otro formato por si acaso -->
+  <!-- <source src="musica-fondo.ogg" type="audio/ogg"> -->
+  Tu navegador no soporta audio.
+</audio>
 
-function startGame() {
-  const music = document.getElementById("bgMusic");
-
-  music.volume = 0.3;
-  music.play();
-
-  goTo('p2');
-}
+  let current = 'p1';
+let musicaIniciada = false;   // ← nuevo
 
 function goTo(id) {
-  document.getElementById(current).classList.remove('active');
-  document.getElementById(id).classList.add('active');
-  current = id;
-}
-
-function showModal(text) {
-  document.getElementById('modalText').innerHTML = text;
-  document.getElementById('modal').style.display = 'flex';
-}
-
-function closeModal(e) {
-  if (!e || e.target.classList.contains('modal') || e.target.classList.contains('close')) {
-    document.getElementById('modal').style.display = 'none';
+  const prev = document.getElementById(current);
+  const next = document.getElementById(id);
+  
+  if (prev) prev.classList.remove('active');
+  if (next) {
+    next.classList.add('active');
+    current = id;
+    
+    // Iniciar música justo después del primer clic
+    if (!musicaIniciada) {
+      const audio = document.getElementById('musicaFondo');
+      audio.play().catch(e => {
+        console.log("No se pudo reproducir automáticamente:", e);
+        // Aquí podrías mostrar un cartel "toca para escuchar música" si quieres
+      });
+      musicaIniciada = true;
+    }
   }
 }
-</script>
-
-<audio id="bgMusic" preload="auto" loop playsinline>
-  <source src="https://jovanypg93.github.io/valentin/musica_v2.mp3" type="audio/mpeg">
-</audio>
 
 </html>
