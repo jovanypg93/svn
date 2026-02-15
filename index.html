@@ -195,19 +195,33 @@ z-index:999;
 </button>
 
 <script>
-const music = document.getElementById("bgMusic");
-const btn = document.getElementById("musicBtn");
+let current = 'p1';
 
-btn.addEventListener("click", () => {
-  if (music.paused) {
-    music.volume = 0.3;
-    music.play();
-    btn.innerText = "🔇 Pausar";
-  } else {
-    music.pause();
-    btn.innerText = "🎵 Música";
+function startGame() {
+  const music = document.getElementById("bgMusic");
+
+  music.volume = 0.3;
+  music.play();
+
+  goTo('p2');
+}
+
+function goTo(id) {
+  document.getElementById(current).classList.remove('active');
+  document.getElementById(id).classList.add('active');
+  current = id;
+}
+
+function showModal(text) {
+  document.getElementById('modalText').innerHTML = text;
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function closeModal(e) {
+  if (!e || e.target.classList.contains('modal') || e.target.classList.contains('close')) {
+    document.getElementById('modal').style.display = 'none';
   }
-});
+}
 </script>
 
 </html>
